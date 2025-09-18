@@ -1,0 +1,81 @@
+% acest program determina numarul florilor dintr-o imagine
+% citim imaginea
+flowers = imread('flower.jpg')
+
+% transformam imaginea din RGB in LAB
+flowersLab = rgb2lab(flowers)
+% extragem a si b din imagine
+a = flowersLab(:,:,2)
+b = flowersLab(:,:,3)
+
+% conturam o floare din imagine pentru crea o masca potrivit culorii
+imshow(flowers)
+croppedFlower = drawpolygon;
+flowerMaskR = createMask(croppedFlower)
+
+% extragem a si b din masca creata
+aFlowerR = a(flowerMaskR)
+bFlowerR = b(flowerMaskR)
+
+% calculam media lui a si b
+meanFlowerR = [mean(aFlowerR), mean(bFlowerR)]
+%
+distFlowerR = sqrt((a - meanFlowerR(1)).^2 + (b - meanFlowerR(2)).^2)
+%
+flowerMask = distFlowerR < 25
+%
+flowersContour = activecontour(flowers, flowerMask, ...
+   'Chan-vese', 'ContractionBias', -0.2)
+
+dFlowers = bwdist(~flowersContour);
+% inversam culorile cu functia imcomplement()
+dFlowers = imcomplement(dFlowers)
+% separam obiectele din imagine
+flowerSep = watershed(dFlowers)
+%
+flowerSep(~flowersContour) = 0
+%
+dFlowers = imhmin(dFlowers, 1)
+% 
+flowerSep = watershed(dFlowers)
+
+% evidentiem obiectele separate pe deasupra imaginii originale
+flowerOverlay = labeloverlay(flowers, flowerSep)
+% extragem datele din separarea obiectelor
+flowersData = bwconncomp(flowerSep)
+% extragem numarul obiectelor separate (numarul florilor din imagine)
+flowersNumber = flowersData.NumObjects
+
+% afisam rezultatele
+
+%figure;
+%imshow(flowers)
+%figure;
+%imshow(flowerMask)
+figure;
+imshow(flowersContour,[])
+%figure;
+%imshow(dFlowers,[])
+figure;
+imshow(flowerSep,[])
+figure;
+imshow(flowerOverlay)
+
+% experimente cu alte metode
+
+%grayFlowers = im2gray(flowers)
+%grayBw = grayFlowers < 60;
+
+%imshow(grayFlowers)
+%flowersBw = imbinarize(flowersBw)
+
+%mask = imfill(mask,"holes")
+%flowersCount = bwpropfilt(mask, 'Area', [10 30])
+
+%flowersBw = bwareaopen(flowersBw, 50)
+
+%orangeFlowers = flowers(:,:,1)
+%flowersBw = imbinarize(orangeFlowers)
+%flowersBw = bwareaopen(flowersBw, 100)
+%se = strel('disk',10)
+%flowersBw = imopen(flowersBw,se)
