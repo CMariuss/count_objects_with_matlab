@@ -14,7 +14,11 @@
 <img src="results/number_of_flowers_result.png" alt="In process" width="300"/>
 
 ## The segmentation process
+
+#### Segmentation using region picker
 <img src="results/segmentation_using_region_picker.png" alt="In process" width="500"/>
+
+#### Trying to find the right bias value
 <img src="results/find_the_right_bias_value.png" alt="In process" width="500"/>
 
 <p>
