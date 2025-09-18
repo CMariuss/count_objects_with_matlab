@@ -16,4 +16,8 @@
 ## The segmentation process
 <img src="results/segmentation_using_region_picker.png.png" alt="In process" width="500"/>
 <img src="results/find_the_right_bias_value.png.png" alt="In process" width="500"/>
-<img src="results/separation_of_flowers_in_gray.png" alt="In process" width="500"/>
+
+<p>
+  <img src="results/separated_flowers_regions.png" alt="In process" width="300"/>
+  <img src="results/separation_of_flowers_in_gray.png" alt="In process" width="300"/>
+</p>
