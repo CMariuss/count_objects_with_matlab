@@ -14,8 +14,8 @@
 <img src="results/number_of_flowers_result.png" alt="In process" width="300"/>
 
 ## The segmentation process
-<img src="results/segmentation_using_region_picker.png.png" alt="In process" width="500"/>
-<img src="results/find_the_right_bias_value.png.png" alt="In process" width="500"/>
+<img src="results/segmentation_using_region_picker.png" alt="In process" width="500"/>
+<img src="results/find_the_right_bias_value.png" alt="In process" width="500"/>
 
 <p>
   <img src="results/separated_flowers_regions.png" alt="In process" width="300"/>
